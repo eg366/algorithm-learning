@@ -1,1 +1,1 @@
-# leetcode_learning
+# algorithm_learning
