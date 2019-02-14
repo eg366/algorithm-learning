@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * 插入排序
+ * 稳定的排序算法
  *
  * @author juny-zhang
  * @date 2019/2/14 10:03
@@ -37,5 +38,8 @@ public class InsertionSort01 {
         int[] a = new int[]{1, 5, 9, 3, 8, 2, 4};
         obj.method01(a);
         System.out.println(Arrays.toString(a));
+
+        int x = 1;
+        System.out.println(~x);
     }
 }
