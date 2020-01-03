@@ -9,8 +9,8 @@ package com.eg366.al.datastructure.linkedlist;
 public class PalindromeString {
 
     public static void main(String[] args) {
-        String str = "abcddcba";
-//        String str = "abcddddd";
+//        String str = "abcdeedcba";
+        String str = "";
         ListNode head = null;
         ListNode pre = null;
         for (int i = 0; i < str.length(); i++) {
@@ -26,8 +26,57 @@ public class PalindromeString {
 
         System.out.println(head);
 
-        System.out.println(isPalindrome(head));
+//        System.out.println(isPalindrome(head));
+        System.out.println(isPalindrome2(head));
     }
+
+    public static boolean isPalindrome2(ListNode head) {
+        // 个数小于2，返回true
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        // 慢指针
+        ListNode slow = head;
+        // 快指针
+        ListNode fast = head;
+
+        // 保存颠倒后的前半部分
+        ListNode reverse = head;
+        ListNode pre = null;
+
+        // 从头开始遍历，快指针走到结尾时，慢指针走一半
+        while (fast != null && fast.next != null) {
+            reverse = slow;
+            // 慢指针：一次走一个
+            slow = slow.next;
+            // 快指针：一次走两个
+            fast = fast.next.next;
+
+            // "aba", "abccba"
+            reverse.next = pre;
+            pre = reverse;
+        }
+
+        System.out.println(reverse);
+
+        // 如果
+        if (fast != null) {
+            slow = slow.next;
+        }
+
+        while (reverse != null) {
+            if (!reverse.val.equals(slow.val)) {
+                return false;
+            }
+
+            reverse = reverse.next;
+            slow = slow.next;
+        }
+
+        return true;
+    }
+
 
     public static boolean isPalindrome(ListNode head) {
         if (head == null || head.next == null) {
