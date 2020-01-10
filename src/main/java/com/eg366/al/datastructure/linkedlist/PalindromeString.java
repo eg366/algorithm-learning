@@ -1,5 +1,7 @@
 package com.eg366.al.datastructure.linkedlist;
 
+import com.eg366.al.vo.ListNode;
+
 /**
  * 回文字符串判断
  *
@@ -108,16 +110,6 @@ public class PalindromeString {
         }
 
         return true;
-    }
-}
-
-
-class ListNode {
-    String val;
-    ListNode next;
-
-    ListNode(String x) {
-        val = x;
     }
 }
 
