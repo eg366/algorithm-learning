@@ -1,6 +1,11 @@
 package com.eg366.al.vo;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @Author: zhangjunyu
@@ -18,14 +23,45 @@ public class ListNode {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(val);
+        Set<String> charSet = new HashSet<>();
 
         ListNode node = next;
         while (node != null) {
-            sb.append(" --> ").append(node.val);
+            String nodeVal = node.val;
+            sb.append(" --> ").append(nodeVal);
             node = node.next;
+
+            // 如果已经存在该节点值了，跳出循环。（针对有环的链表）
+            if (!charSet.add(nodeVal)) {
+                break;
+            }
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        ListNode listNode = (ListNode) o;
+
+        return new EqualsBuilder()
+                .append(val, listNode.val)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(val)
+                .toHashCode();
     }
 
     public static ListNode buildByString(String data) {
@@ -41,6 +77,29 @@ public class ListNode {
             pre.next = cur;
             pre = cur;
         }
+        return head;
+    }
+
+    public static ListNode buildLookByString(String data, String overChar) {
+        // 先构建链表
+        ListNode head = buildByString(data);
+
+        // 将链表尾节点.next，指向值为overChar的节点
+        ListNode overNode = null, tailNode = head;
+
+        while (tailNode.next != null) {
+            if (overNode == null && overChar.equals(tailNode.val)) {
+                overNode = tailNode;
+            }
+
+            tailNode = tailNode.next;
+        }
+
+        if (overNode != null) {
+            tailNode.next = overNode;
+        }
+
+
         return head;
     }
 }
