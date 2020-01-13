@@ -64,6 +64,9 @@ public class ListNode {
                 .toHashCode();
     }
 
+    /**
+     * 按照字符串参数data的字符顺序构建链表节点
+     */
     public static ListNode buildByString(String data) {
         if (StringUtils.isEmpty(data)) {
             return null;
@@ -80,6 +83,13 @@ public class ListNode {
         return head;
     }
 
+    /**
+     * 构建存在环的链表
+     *
+     * @param data     链表节点数据
+     * @param overChar 将链表尾.next指向值为overChar的链表节点
+     * @return 链表头节点
+     */
     public static ListNode buildLookByString(String data, String overChar) {
         // 先构建链表
         ListNode head = buildByString(data);
@@ -87,6 +97,7 @@ public class ListNode {
         // 将链表尾节点.next，指向值为overChar的节点
         ListNode overNode = null, tailNode = head;
 
+        // 遍历获取尾节点，并将overNode指向值为overChar的节点
         while (tailNode.next != null) {
             if (overNode == null && overChar.equals(tailNode.val)) {
                 overNode = tailNode;
@@ -95,6 +106,7 @@ public class ListNode {
             tailNode = tailNode.next;
         }
 
+        // 如果存在overNode节点，将尾结点.next指向它
         if (overNode != null) {
             tailNode.next = overNode;
         }
