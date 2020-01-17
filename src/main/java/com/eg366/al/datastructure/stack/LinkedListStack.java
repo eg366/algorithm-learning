@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 public class LinkedListStack {
 
-    // 哨兵节点
+    // 哨兵（头）节点
     private ListNode guardNode;
 
     // 栈中元素的个数
