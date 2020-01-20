@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 /**
  * 插入排序
- * 稳定的排序算法
+ * 1. 是原地排序算法，空间复杂度为O(1)；
+ * 2. 是稳定的排序算法；
+ * 3. 时间复杂度：O(n^2)；
  *
  * @author juny-zhang
  * @date 2019/2/14 10:03
@@ -12,8 +14,9 @@ import java.util.Arrays;
 public class InsertionSort01 {
 
     public void method01(int[] a) {
-        if (a == null || a.length <= 1)
+        if (a == null || a.length <= 1) {
             return;
+        }
 
         int n = a.length;
 
@@ -26,6 +29,7 @@ public class InsertionSort01 {
                 if (a[j] > val) {
                     a[j + 1] = a[j];
                 } else {
+                    // 当执行break时，不会执行j--
                     break;
                 }
             }

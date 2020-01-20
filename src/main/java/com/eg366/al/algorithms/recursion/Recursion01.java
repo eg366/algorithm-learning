@@ -17,10 +17,12 @@ public class Recursion01 {
      * @return 多少种走法
      */
     public int method01(int n) {
-        if (n == 1)
+        if (n == 1) {
             return 1;
-        if (n == 2)
+        }
+        if (n == 2) {
             return 2;
+        }
 
         return method01(n - 1) + method01(n - 2);
     }
@@ -36,10 +38,12 @@ public class Recursion01 {
      * @return 多少种走法
      */
     public int method02(int n) {
-        if (n == 1)
+        if (n == 1) {
             return 1;
-        if (n == 2)
+        }
+        if (n == 2) {
             return 2;
+        }
 
         int result = 0;
         int pre = 2;

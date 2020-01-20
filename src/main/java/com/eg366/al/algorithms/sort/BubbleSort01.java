@@ -5,7 +5,7 @@ package com.eg366.al.algorithms.sort;
  * <p>
  * 1. 是原地排序算法，空间复杂度为O(1)；
  * 2. 是稳定的排序算法，相邻的两个元素大小相等时，不会进行交换；
- * 3. 时间复杂度：
+ * 3. 时间复杂度：O(n^2)；[最好情况：1,2,3,4,5,6；一次冒泡；时间复杂度O(n)];[最坏情况：6,5,4,3,2,1；6次冒泡；时间复杂度O(n^2)]
  *
  * @author juny-zhang
  * @date 2019/2/13 16:53
@@ -13,8 +13,9 @@ package com.eg366.al.algorithms.sort;
 public class BubbleSort01 {
 
     public void method01(int[] a) {
-        if (a == null || a.length <= 1)
+        if (a == null || a.length <= 1) {
             return;
+        }
 
         int n = a.length;
         // 对n个数字进行排序，需要进行n-1趟排序
@@ -32,8 +33,9 @@ public class BubbleSort01 {
             }
 
             // 如果本趟排序中没有进行数据交换，说明已达到完全有序
-            if (!flag)
+            if (!flag) {
                 break;
+            }
         }
     }
 
