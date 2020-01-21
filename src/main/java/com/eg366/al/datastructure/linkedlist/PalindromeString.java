@@ -12,7 +12,7 @@ public class PalindromeString {
 
     public static void main(String[] args) {
 //        String str = "abcdeedcba";
-        String str = "";
+        String str = "12345";
         ListNode head = null;
         ListNode pre = null;
         for (int i = 0; i < str.length(); i++) {
