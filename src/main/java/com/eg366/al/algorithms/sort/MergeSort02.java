@@ -27,7 +27,29 @@ public class MergeSort02 {
     }
 
     private void merge(int[] a, int beginPos, int midPos, int endPos) {
+        int[] b = new int[endPos - beginPos + 1];
 
+        int i = beginPos;
+        int j = midPos + 1;
+        int index = 0;
+        while (i <= midPos && j <= endPos) {
+            if (a[i] < a[j]) {
+                b[index++] = a[i++];
+            } else {
+                b[index++] = a[j++];
+            }
+        }
+
+        while (i <= midPos) {
+            b[index++] = a[i++];
+        }
+        while (j <= endPos) {
+            b[index++] = a[j++];
+        }
+
+        for (int x = beginPos, y = 0; x <= endPos; x++, y++) {
+            a[x] = b[y];
+        }
     }
 
     public static void main(String[] args) {
