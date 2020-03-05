@@ -26,4 +26,4 @@ hs_err_pid*
 target
 
 # ignore IntelliJ IDEA files
-algorithm-learning.iml
+*.iml
