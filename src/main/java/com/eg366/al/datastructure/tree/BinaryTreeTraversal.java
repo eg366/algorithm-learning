@@ -1,9 +1,8 @@
 package com.eg366.al.datastructure.tree;
 
 import com.eg366.al.vo.BinaryTreeNode;
+import javafx.util.Pair;
 
-import javax.sound.midi.Soundbank;
-import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -42,7 +41,31 @@ public class BinaryTreeTraversal {
      * 非递归方式计算二叉树的高度
      */
     private static int getTreeHeight2(BinaryTreeNode node) {
+        if (node == null) {
+            return 0;
+        }
 
+        int height = 0;
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        queue.add(node);
+
+        // 一层层的add，一层层的pool 进行遍历
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                BinaryTreeNode n = queue.poll();
+                if (n.getLeft() != null) {
+                    queue.add(n.getLeft());
+                }
+                if (n.getRight() != null) {
+                    queue.add(n.getRight());
+                }
+            }
+
+            height++;
+        }
+
+        return height;
     }
 
     /**
